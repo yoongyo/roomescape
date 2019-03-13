@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container-fluid py-5" style="background-color:black">
+    <h1 class="text-center text-white">ROOM</h1>
+    <h4 class="text-center pb-4" style="color:rgb(171,171,171);">테마 소개</h4>
+    <div class="container">
+        <div class="container">
+            <div class="container px-3">
+                {% for i in theme %}
+                <div class="row mx-4 my-4 px-2" style="background-color:rgb(51,51,51);">
+                    <div class="col-5 text-center">
+                        <img class="px-5 py-5" width="100%" src="{{ i.image.url }}">
+                    </div>
+                    <div class="col-7">
+                        <div class="my-3">
+                            <span class="font-weight-bold" style="color: rgb(241, 211, 92);font-size:27pt">{{ i.name }}</span>
+                            <span class="text-white font-weight-bold" style="font-size:15pt;">&nbsp;&nbsp;({{ i.genre }})</span>
+                        </div>
+                        <h5 class="text-white">진행시간 : 60분    참여인원 : {{ i.numPeople }}   난이도: ★★★★☆☆</h5>
+                        <br>
+                        <p class="text-white mr-3" style="height:220px;">{{ i.summary|safe }}
+                        </p>
+                        <div class="d-flex justify-content-end px-5">
+                            <a href="{% url 'theme:theme_booking' today i.name %}" style="text-decoration:none;">
+                                <div class="flex-sm-3 p-4" style="border: 2px solid white">
+                                    <h5 class="text-white" style="margin:0">BOOKING</h5>
+                                </div>
+                            </a>
+                        </div>
+                   </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

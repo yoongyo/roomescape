@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+    <head>
+        <meta charset="utf-8">
+        <!-- 부트스트랩 모바일 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- 부트스트랩 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            $(window).scroll(function() {
+                var scroll = $(window).scrollTop();
+
+                if (scroll >= 100) {
+                    $(".top-nav").addClass("light-header");
+                } else {
+                    $(".top-nav").removeClass("light-header");
+                }
+            });
+        </script>
+    </head>
+    <body>
+    {% load static %}
+        {% for i in info %}
+        <nav class="px-5 navbar navbar-expand-md top-nav" style="background-color:rgb(51,51,51);">
+                  <a class="navbar-brand" href="{% url 'main' %}"><img width="160px" src="{% static 'image/logo.png' %}"></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="{% url 'information:information' %}">이용안내<span class="sr-only"></span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="{% url 'theme:theme_info' %}">테마</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="{% url 'theme:theme_list' today %}">예약하기</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="">FAQ</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="">Q&A</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-white font-weight-bold mx-2" href="">예약확인 및 취소</a>
+                      </li>
+                    </ul>
+                  </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid">
+
+        </div>
+
+        <!-- 주의사항 -->
+        <div class="container-fluid" style="background-color:rgb(51,51,51);">
+            <div class="container py-3">
+                <h1 class="text-center text-white mb-5 mt-3">주의 사항</h1>
+                <div class="row mx-5">
+                    <div class="col-3 text-center">
+                        <img src="{% static 'image/1.png' %}">
+                        <p class="text-white my-3">
+                            입장 전 주의사항 설명, 테마설명 등 기본 숙지사항을 안내드립니다.
+                            원활한 게임 진행을 위하여
+                            예약시간 10분전에 매장에 도착하여
+                            간단한 안내를 받으시기 바랍니다.
+                        </p>
+                    </div>
+                    <div class="col-3 text-center">
+                        <img src="{% static 'image/2.png' %}">
+                        <p class="text-white my-3">
+                            폐쇄된 특정 공간에서 이루어지는
+                            추리탈출 테마시설로 폐쇄공포증이 있거나
+                            노약자, 임산부, 음주자, 또한 13세 이하의
+                            어린이는 보호자 동반시 참여 가능 합니다.
+                        </p>
+                    </div>
+                    <div class="col-3 text-center">
+                        <img src="{% static 'image/3.png' %}">
+                        <p class="text-white my-3">
+                            소품과 컨텐츠는 외부로 유출 불가합니다.
+                            게임참여시 기밀유지에 동의하는
+                            것으로간주되며 테마룸 입장 전
+                            핸드폰, 카메라, 필기도구 등은 준비된
+                            보관함에 보관하시게 됩니다.
+                        </p>
+                    </div>
+                    <div class="col-3 text-center">
+                        <img src="{% static 'image/4_1.png' %}">
+                        <p class="text-white my-3">
+                            고객의 안전을 위해 CCTV와
+                            인터폰이 설치되어 있습니다.
+                            휴대하신 라이터, 칼 등 위험물품은
+                            게임을 이용하시기 전에 보관함에
+                            보관하시기 바랍니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 테마룸 예약하기 -->
+        <div class="container-fluid py-5" style="background-color:black">
+            <div class="container px-5 mb-4">
+                <h2 class="text-center pb-4" style="color:rgb(251, 221, 96);">테마룸 예약하기</h2>
+                <div class="row">
+                    {% for i in theme %}
+                    <div class="col-3" style="border:5px solid black;width:20%;background-color:rgb(51,51,51);">
+                        <div>
+                            <h4 class="text-center text-white my-3">{{ i.name }}</h4>
+                            <img width="100%" height="323px" src="{{ i.image.url }}">
+                            <p class="text-center text-white" style="font-size:0.9rem">
+                                난이도 : ★★★★☆☆<br>
+                                장르 : {{ i.genre }}<br>
+                                인원(시간) : {{ i.numPeople }}<br>
+                                공포도 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                활동성 : <br>
+                                ●○○○○ &nbsp&nbsp&nbsp&nbsp&nbsp●●●●○<br>
+                            </p>
+                            <a href="{% url 'theme:theme_booking' today i.name %}" style="text-decoration:none;">
+                            <div style="background-color:rgb(33,33,33);">
+                                <h4 class="text-center py-1" style="color: rgb(251,221,96);">BOOKING</h4>
+                            </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 이용요금-->
+        <div class="container-fluid py-5" style="background-color:rgb(51,51,51);">
+            <div class="container px-5">
+                <h2 class="text-center text-white pb-4">이용요금</h2>
+                <div>
+                    <table style="width:70%" class="table table-bordered text-white text-center" cellpadding=0 cellspacing=0 border=0 id="price">
+                        <tbody>
+                        <tr style="background-color:white;color:black;">
+                            <td style="border:1px solid white">인원수</td>
+                            <td style="border:1px solid white">현금결제</td>
+                            <td style="border:1px solid white">카드결제</td>
+                            <td style="border:1px solid white">이벤트</td>
+                        </tr>
+                        <tr>
+                            <td class="member">2인</td>
+                            <td>20,000원(인당)</td>
+                            <td>22,000원</td>
+                            <td rowspan="7" class="pt-5">
+                                {{ i.event|safe }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="member">3인</td>
+                            <td>18,000원(인당)</td>
+                            <td>20,000원</td>
+                        </tr>
+                        <tr>
+                        <td class="member">4인</td>
+                            <td>16,000원(인당)</td>
+                            <td>18,000원</td>
+                        </tr>
+                        <tr>
+                            <td class="member">5인</td>
+                            <td>14,000원(인당)</td>
+                            <td>16,000원</td>
+                        </tr>
+                        <tr>
+                            <td class="member">6인</td>
+                            <td>13,000원(인당)</td>
+                            <td>15,000원</td>
+                        </tr>
+                        <tr>
+                            <td class="member">중고생</td>
+                            <td>13,000원(인당)</td>
+                            <td>15,000원</td>
+                        </tr>
+                        <tr>
+                            <td class="member">초등생</td>
+                            <td>10,000원(인당)</td>
+                            <td>12,000원</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 지도 -->
+        <div style="background-color:black">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.18964685166185!2d127.07343923435204!3d37.20553915734964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b44370ab2f8fb%3A0x5985bca701807464!2z7IiY7ISx7ZSE65287J6Q!5e0!3m2!1sko!2skr!4v1479970556937" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+        </div>
+
+        <!-- 푸터 -->
+        <footer class="py-4 px-5"style="background-color:rgb(51,51,51);">
+            <div class="px-4">
+                <h6 class="text-white" style="font-size:13pt">TEL : {{ i.Tel }} /  영업시간 : {{ i.businessHours }}</h6>
+                <p style="font-size:11pt" class="text-white">상호명 : {{ i.fullName }} /  대표자 : {{ i.CEO }} /  사업자등록번호 : {{ i.businessLicense }} /  주소 : {{ i.address }} /  E-mail : {{ i.Email }}</p>
+            </div>
+        </footer>
+        {% endfor %}
+    </body>

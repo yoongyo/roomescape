@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(function() {
+        $("#datepicker1").datepicker({
+            dateFormat: 'yy-mm-dd',
+            onSelect: function(dateText, inst) {
+                window.location = "{% url 'theme:theme' %}" + dateText +"/{{ theme.name }}";
+            }
+        });
+        $("#datepicker1").datepicker('setDate', 'today');
+    });
+
+    $(function() {
+        var date = new Date();
+        var today = new Date();
+        date.setFullYear({{ year }}, {{ month }}, {{ day }});
+        if (today.getTime() > date.getTime()){
+            $(".date_a").attr("href", "#");
+            $(".date_div").attr("style", "border:1px solid #555 !important");
+            $(".date_p").attr("style", "color: #555 !important; margin:0");
+            $(".date_p2").attr("style", "color: #555; margin:0");
+            $(".date_p2").html("예약 불가");
+        }
+    });
+
+  function moveToURL(url){
+     document.location.href= url;
+  }
+  $(function (){
+    var theme = "{{ theme.name }}";
+    $("#selectBox").val("{% url 'theme:theme_booking' today theme.name %}").prop("selected", true);
+  });
+</script>
+
+<div class="container-fluid py-5" style="background-color:black">
+    <h1 class="text-center text-white">BOOKING</h1>
+    <h4 class="text-center pb-4" style="color:rgb(171,171,171);">테마 예약</h4>
+    <div class="container">
+        <div class="container">
+            <div class="container">
+                <div class="row mx-4 mt-4 px-2 mb-4" style="background-color:rgb(51,51,51);">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1 my-4 py-1">
+                        <span class="text-white my-4">룸선택 : </span>
+                    </div>
+                    <div class="col-sm-3 my-4">
+                        <select class="form-control" id="selectBox" name="room" onchange="moveToURL(this.value);">
+                            <option value="{% url 'theme:theme_list' today %}">전체 테마</option>
+                            {% for j in themes %}
+                            <option id="{{ j.name }}" value="{% url 'theme:theme_booking' today j.name %}">{{ j.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1 my-4 py-1" style="padding:0">
+                        <span class="text-white my-4">날짜선택 : </span>
+                    </div>
+                    <div class="col-sm-3 my-4">
+                        <input class="form-control" type="text" autocomplete="off" id="datepicker1">
+                        <script>
+                            $(function(){
+                                $("#datepicker1").prop("value", "{{ date }}");
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="row mx-4 my-4 px-4 py-4" style="background-color:rgb(51,51,51);">
+                    <div class="col-8">
+                        <h1 class="text-white">{{ theme.name }}</h1>
+                        <h5 class="text-white">인원(진행시간) : {{ theme.numPeople }}</h5>
+                        <h5 class="text-white">난이도: 공포도: 활동성 :</h5>
+                        <div class="row mt-5">
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="{% url 'theme:booking_detail' today theme.name theme.time1 %}" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time1 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time2 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time3 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time4 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time5 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time6 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time7 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time8 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time9 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="py-2 px-2" style="width:20%">
+                                <a class="date_a text-white" href="#" style="text-decoration:none;">
+                                    <div class="date_div py-3" style="border: 1px solid yellow;">
+                                        <p style="margin:0" class="date_p text-center">{{ theme.time10 }}</p>
+                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <img width="100%" src="{{ theme.image.url }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

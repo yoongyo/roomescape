@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% for i in info %}
+<div class="container-fluid py-5" style="background-color:black">
+    <h1 class="text-center text-white">{{ i.name }}</h1>
+    <h4 class="text-center pb-5" style="color:rgb(171,171,171);">이용안내</h4>
+    <div class="container">
+        <div class="container">
+            <div class="container px-3">
+            <p class="text-center text-white">
+                온라인에서 즐기던 방 탈출 게임을 실제상황처럼 참가자가 특별한 테마 룸에 갇혀<br>
+                주어진 시간 60분 이내로 미션을 해결하여 탈출하여야 합니다.<br>
+                <br>
+                {{ i.name }}에서 {{ i.roomNum }}가지의 테마를 경험해보세요!
+            </p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row my-5">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-sm-12">
+                    <table class="table table-bordered text-center" cellpadding=0 cellspacing=0 border=0 id="price">
+                        <thead>
+                            <tr style="background:#fff; color:#222">
+                                <td style="border-right:1px solid #222">인원수</td>
+                                <td style="border-right:1px solid #222">현금 / 카드(인당)</td>
+                                <td>가격이벤트</td>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white">
+                            <tr>
+                            </tr>
+                            <tr>
+                                <td>2명</td>
+                                <td>20,000 / 22,000</td>
+                                <td rowspan="7" style="text-align:left; padding-left:15px">
+                                    <div class="my-5">
+                                        {{ i.event|safe }}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3명</td>
+                                <td>18,000 / 20,000</td>
+                            </tr>
+                            <tr>
+                                <td>4명</td>
+                                <td>16,000 / 18,000</td>
+                            </tr>
+                            <tr>
+                                <td>5명</td>
+                                <td>14,000 / 16,000</td>
+                            </tr>
+                            <tr>
+                                <td>6명</td>
+                                <td>13,000 / 15,000</td>
+                            </tr>
+                            <tr>
+                                <td>중.고등</td>
+                                <td>13,000 / 15,000</td>
+                            </tr>
+                            <tr>
+                                <td>초등부</td>
+                                <td>10,000 / 12,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

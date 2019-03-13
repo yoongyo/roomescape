@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<script>
+    function price_change(){
+        var form = document.BookingForm;
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "1명"){
+            Price.innerHTML = "금액 : " + MoneySwap(40000) + "원";
+            return;
+        }
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "2명"){
+            Price.innerHTML = "금액 : " + MoneySwap(40000) + "원";
+            return;
+        }
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "3명"){
+            Price.innerHTML = "금액 : " + MoneySwap(54000) + "원";
+            return;
+        }
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "4명"){
+            Price.innerHTML = "금액 : " + MoneySwap(64000) + "원";
+            return;
+        }
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "5명"){
+            Price.innerHTML = "금액 : " + MoneySwap(72000) + "원";
+            return;
+        }
+        if (form.numPeople.options[form.numPeople.selectedIndex].value == "6명"){
+            Price.innerHTML = "금액 : " + MoneySwap(78000) + "원";
+            return;
+        }
+    }
+    function MoneySwap(mValue)
+      {
+       var temp_str = String(mValue);
+       for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++)
+       {
+        retValue = ((i%3) == 0) && i != 0 ? temp_str.charAt((stop - i) -1) + "," + retValue : temp_str.charAt((stop - i) -1) + retValue;
+       }
+       return retValue;
+      }
+
+</script>
+
+{{ form.media }}
+<form name="BookingForm" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container-fluid py-5 px-5" style="background-color:black">
+        <h1 class="text-center text-white">BOOKING</h1>
+        <h4 class="text-center pb-5" style="color:rgb(171,171,171);">예약정보 입력</h4>
+        <div class="container px-5">
+            <div clas="container px-5">
+                <div class="container px-5">
+                    <hr class="mx-5" style="border:1px solid white">
+                    <div class="mx-5 px-4">
+                        <table class="text-white table">
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>예약일</h4></th>
+                                <td style="border-color:black">{{ date }}</td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>시간</h4></th>
+                                <td style="border-color:black">{{ time }}</td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>테마명</h4></th>
+                                <td style="border-color:black">{{ theme.name }}</td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>예약자</h4></th>
+                                <td style="border-color:black">{{ form.name }}</td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>연락처</h4></th>
+                                <td style="border-color:black">{{ form.phone }}</td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>인원</h4></th>
+                                <td style="border-color:black">{{ form.numPeople }}</td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                                <td style="border-color:black"></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>가격</h4></th>
+                                <td style="border-color:black"><span id="Price">금액 : 40,000 원</span></td>
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>입금정보</h4></th>
+                                {% for i in info %}
+                                <td style="border-color:black">{{ i.bank }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr style="border-color:black">
+                                <th style="border-color:black" scope="row"><h4>예약방식</h4></th>
+                                <td style="border-color:black">{{ form.depositWay }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <input class="btn btn-primary text-center" type="submit" value="완 료">
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
