@@ -7,7 +7,7 @@ class ThemeAdmin(admin.ModelAdmin):
 
 
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ['name', 'phone', 'date', 'time', 'numPeople']
+    list_display = ['name', 'phone', 'date', 'time', 'numPeople', 'theme']
 
 
 admin.site.register(Booking, BookingAdmin)

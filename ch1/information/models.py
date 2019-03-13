@@ -13,3 +13,8 @@ class Information(models.Model):
     businessLicense = models.CharField(max_length=50)
     businessHours = models.CharField(max_length=100)
     roomNum = models.IntegerField()
+    logo = models.ImageField(upload_to='information/')
+    image1 = models.ImageField(upload_to='information/')
+    image2 = models.ImageField(upload_to='information/')
+    image3 = models.ImageField(upload_to='information/')
+    image4 = models.ImageField(upload_to='information/')

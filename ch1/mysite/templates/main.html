@@ -25,7 +25,11 @@
     {% load static %}
         {% for i in info %}
         <nav class="px-5 navbar navbar-expand-md top-nav" style="background-color:rgb(51,51,51);">
-                  <a class="navbar-brand" href="{% url 'main' %}"><img width="160px" src="{% static 'image/logo.png' %}"></a>
+                  <a class="navbar-brand" href="{% url 'main' %}">
+                      {% for i in info %}
+                        <img width="160px" src="{{ i.logo.url }}">
+                      {% endfor %}
+                  </a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
                   </button>

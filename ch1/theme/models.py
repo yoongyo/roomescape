@@ -8,6 +8,7 @@ class Theme(models.Model):
     summary = models.TextField()
     numPeople = models.IntegerField()
     difficulty = models.IntegerField()
+    activity = models.IntegerField()
     genre = models.CharField(max_length=20)
     horror = models.IntegerField()
     time1 = models.CharField(max_length=10)

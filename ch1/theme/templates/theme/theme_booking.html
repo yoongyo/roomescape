@@ -17,15 +17,188 @@
     });
 
     $(function() {
-        var date = new Date();
+        {% for i in booking %}
+            {% if i.time == theme.time1 %}
+                $(".time1date_a").attr("href", "#");
+                $(".time1date_div").attr("style", "border:1px solid #555 !important");
+                $(".time1date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time1date_p2").attr("style", "color: #555; margin:0");
+                $(".time1date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time2 %}
+                $(".time2date_a").attr("href", "#");
+                $(".time2date_div").attr("style", "border:1px solid #555 !important");
+                $(".time2date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time2date_p2").attr("style", "color: #555; margin:0");
+                $(".time2date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time3 %}
+                $(".time3date_a").attr("href", "#");
+                $(".time3date_div").attr("style", "border:1px solid #555 !important");
+                $(".time3date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time3date_p2").attr("style", "color: #555; margin:0");
+                $(".time3date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time4 %}
+                $(".time4date_a").attr("href", "#");
+                $(".time4date_div").attr("style", "border:1px solid #555 !important");
+                $(".time4date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time4date_p2").attr("style", "color: #555; margin:0");
+                $(".time4date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time5 %}
+                $(".time5date_a").attr("href", "#");
+                $(".time5date_div").attr("style", "border:1px solid #555 !important");
+                $(".time5date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time5date_p2").attr("style", "color: #555; margin:0");
+                $(".time5date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time6 %}
+                $(".time6date_a").attr("href", "#");
+                $(".time6date_div").attr("style", "border:1px solid #555 !important");
+                $(".time6date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time6date_p2").attr("style", "color: #555; margin:0");
+                $(".time6date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time7 %}
+                $(".time7date_a").attr("href", "#");
+                $(".time7date_div").attr("style", "border:1px solid #555 !important");
+                $(".time7date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time7date_p2").attr("style", "color: #555; margin:0");
+                $(".time7date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time8 %}
+                $(".time8date_a").attr("href", "#");
+                $(".time8date_div").attr("style", "border:1px solid #555 !important");
+                $(".time8date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time8date_p2").attr("style", "color: #555; margin:0");
+                $(".time8date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time9 %}
+                $(".time9date_a").attr("href", "#");
+                $(".time9date_div").attr("style", "border:1px solid #555 !important");
+                $(".time9date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time9date_p2").attr("style", "color: #555; margin:0");
+                $(".time9date_p2").html("예약 불가");
+            {% endif %}
+            {% if i.time == theme.time10 %}
+                $(".time10date_a").attr("href", "#");
+                $(".time10date_div").attr("style", "border:1px solid #555 !important");
+                $(".time10date_p").attr("style", "color: #555 !important; margin:0");
+                $(".time10date_p2").attr("style", "color: #555; margin:0");
+                $(".time10date_p2").html("예약 불가");
+            {% endif %}
+        {% endfor %}
+     });
+
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time1_hour }}, {{ time1_min }},0);
         var today = new Date();
-        date.setFullYear({{ year }}, {{ month }}, {{ day }});
         if (today.getTime() > date.getTime()){
-            $(".date_a").attr("href", "#");
-            $(".date_div").attr("style", "border:1px solid #555 !important");
-            $(".date_p").attr("style", "color: #555 !important; margin:0");
-            $(".date_p2").attr("style", "color: #555; margin:0");
-            $(".date_p2").html("예약 불가");
+            $(".time1date_a").attr("href", "#");
+            $(".time1date_div").attr("style", "border:1px solid #555 !important");
+            $(".time1date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time1date_p2").attr("style", "color: #555; margin:0");
+            $(".time1date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time2_hour }}, {{ time2_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time2date_a").attr("href", "#");
+            $(".time2date_div").attr("style", "border:1px solid #555 !important");
+            $(".time2date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time2date_p2").attr("style", "color: #555; margin:0");
+            $(".time2date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time3_hour }}, {{ time3_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time3date_a").attr("href", "#");
+            $(".time3date_div").attr("style", "border:1px solid #555 !important");
+            $(".time3date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time3date_p2").attr("style", "color: #555; margin:0");
+            $(".time3date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time4_hour }}, {{ time4_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time4date_a").attr("href", "#");
+            $(".time4date_div").attr("style", "border:1px solid #555 !important");
+            $(".time4date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time4date_p2").attr("style", "color: #555; margin:0");
+            $(".time4date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time5_hour }}, {{ time5_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time5date_a").attr("href", "#");
+            $(".time5date_div").attr("style", "border:1px solid #555 !important");
+            $(".time5date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time5date_p2").attr("style", "color: #555; margin:0");
+            $(".time5date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time6_hour }}, {{ time6_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time6date_a").attr("href", "#");
+            $(".time6date_div").attr("style", "border:1px solid #555 !important");
+            $(".time6date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time6date_p2").attr("style", "color: #555; margin:0");
+            $(".time6date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time7_hour }}, {{ time7_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time7date_a").attr("href", "#");
+            $(".time7date_div").attr("style", "border:1px solid #555 !important");
+            $(".time7date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time7date_p2").attr("style", "color: #555; margin:0");
+            $(".time7date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time8_hour }}, {{ time8_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time8date_a").attr("href", "#");
+            $(".time8date_div").attr("style", "border:1px solid #555 !important");
+            $(".time8date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time8date_p2").attr("style", "color: #555; margin:0");
+            $(".time8date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time9_hour }}, {{ time9_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time9date_a").attr("href", "#");
+            $(".time9date_div").attr("style", "border:1px solid #555 !important");
+            $(".time9date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time9date_p2").attr("style", "color: #555; margin:0");
+            $(".time9date_p2").html("예약 불가");
+        }
+    });
+    $(function() {
+        var date = new Date({{ year }}, {{ month }}, {{ day }}, {{ time10_hour }}, {{ time10_min }},0);
+        var today = new Date();
+        if (today.getTime() > date.getTime()){
+            $(".time10date_a").attr("href", "#");
+            $(".time10date_div").attr("style", "border:1px solid #555 !important");
+            $(".time10date_p").attr("style", "color: #555 !important; margin:0");
+            $(".time10date_p2").attr("style", "color: #555; margin:0");
+            $(".time10date_p2").html("예약 불가");
         }
     });
 
@@ -34,10 +207,9 @@
   }
   $(function (){
     var theme = "{{ theme.name }}";
-    $("#selectBox").val("{% url 'theme:theme_booking' today theme.name %}").prop("selected", true);
+    $("#selectBox").val("{% url 'theme:theme_booking' date theme.name %}").prop("selected", true);
   });
 </script>
-
 <div class="container-fluid py-5" style="background-color:black">
     <h1 class="text-center text-white">BOOKING</h1>
     <h4 class="text-center pb-4" style="color:rgb(171,171,171);">테마 예약</h4>
@@ -51,9 +223,9 @@
                     </div>
                     <div class="col-sm-3 my-4">
                         <select class="form-control" id="selectBox" name="room" onchange="moveToURL(this.value);">
-                            <option value="{% url 'theme:theme_list' today %}">전체 테마</option>
+                            <option value="{% url 'theme:theme_list' date %}">전체 테마</option>
                             {% for j in themes %}
-                            <option id="{{ j.name }}" value="{% url 'theme:theme_booking' today j.name %}">{{ j.name}}</option>
+                            <option id="{{ j.name }}" value="{% url 'theme:theme_booking' date j.name %}">{{ j.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -73,88 +245,121 @@
                 <div class="row mx-4 my-4 px-4 py-4" style="background-color:rgb(51,51,51);">
                     <div class="col-8">
                         <h1 class="text-white">{{ theme.name }}</h1>
-                        <h5 class="text-white">인원(진행시간) : {{ theme.numPeople }}</h5>
-                        <h5 class="text-white">난이도: 공포도: 활동성 :</h5>
-                        <div class="row mt-5">
+                        <h5 class="text-white mb-3">인원 : 최대 {{ theme.numPeople }}명</h5>
+                        <div class="mb-5">
+                            <span style="font-size:18px;" class="text-white">난이도 :
+                                <span style="color:yellow">
+                                    {% if theme.difficulty == 1 %} ★☆☆☆☆☆{% endif %}
+                                    {% if theme.difficulty == 2 %} ★★☆☆☆☆{% endif %}
+                                    {% if theme.difficulty == 3 %} ★★★☆☆☆{% endif %}
+                                    {% if theme.difficulty == 4 %} ★★★★☆☆{% endif %}
+                                    {% if theme.difficulty == 5 %} ★★★★★☆{% endif %}
+                                    {% if theme.difficulty == 6 %} ★★★★★★{% endif %}
+                                </span>
+                                &nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span style="font-size:18px;"class="text-white">공포도 :
+                                <span style="color:yellow">{% if theme.horror == 1 %} ●○○○○○{% endif %}
+                                    {% if theme.horror == 2 %} ●●○○○○{% endif %}
+                                    {% if theme.horror == 3 %} ●●●○○○{% endif %}
+                                    {% if theme.horror == 4 %} ●●●●○○{% endif %}
+                                    {% if theme.horror == 5 %} ●●●●●○{% endif %}
+                                    {% if theme.horror == 6 %} ●●●●●●{% endif %}
+                                </span>
+                                &nbsp;&nbsp;&nbsp;
+                            </span>
+                            <span style="font-size:18px;" class="text-white">활동성 :
+                                <span style="color:yellow">
+                                    {% if theme.activity == 1 %} ●○○○○○{% endif %}
+                                    {% if theme.activity == 2 %} ●●○○○○{% endif %}
+                                    {% if theme.activity == 3 %} ●●●○○○{% endif %}
+                                    {% if theme.activity == 4 %} ●●●●○○{% endif %}
+                                    {% if theme.activity == 5 %} ●●●●●○{% endif %}
+                                    {% if theme.activity == 6 %} ●●●●●●{% endif %}
+                                </span>
+                                &nbsp;&nbsp;&nbsp;
+                            </span>
+                        </div>
+                        <div class="row mt-4">
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="{% url 'theme:booking_detail' today theme.name theme.time1 %}" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time1 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time1date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time1 %}" style="text-decoration:none;">
+                                    <div class="time1date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time1date_p text-center">{{ theme.time1 }}</p>
+                                        <p style="margin:0" class="time1date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time2 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time2date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time2 %}" style="text-decoration:none;">
+                                    <div class="time2date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time2date_p text-center">{{ theme.time2 }}</p>
+                                        <p style="margin:0" class="time2date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time3 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time3date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time3 %}" style="text-decoration:none;">
+                                    <div class="time3date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time3date_p text-center">{{ theme.time3 }}</p>
+                                        <p style="margin:0" class="time3date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time4 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time4date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time4 %}" style="text-decoration:none;">
+                                    <div class="time4date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time4date_p text-center">{{ theme.time4 }}</p>
+                                        <p style="margin:0" class="time4date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time5 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time5date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time5 %}" style="text-decoration:none;">
+                                    <div class="time5date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time5date_p text-center">{{ theme.time5 }}</p>
+                                        <p style="margin:0" class="time5date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time6 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time6date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time6 %}" style="text-decoration:none;">
+                                    <div class="time6date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time6date_p text-center">{{ theme.time6 }}</p>
+                                        <p style="margin:0" class="time6date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time7 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time7date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time7 %}" style="text-decoration:none;">
+                                    <div class="time7date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time7date_p text-center">{{ theme.time7 }}</p>
+                                        <p style="margin:0" class="time7date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time8 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time8date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time8 %}" style="text-decoration:none;">
+                                    <div class="time8date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time8date_p text-center">{{ theme.time8 }}</p>
+                                        <p style="margin:0" class="time8date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time9 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time9date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time9 %}" style="text-decoration:none;">
+                                    <div class="time9date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time9date_p text-center">{{ theme.time9 }}</p>
+                                        <p style="margin:0" class="time9date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="py-2 px-2" style="width:20%">
-                                <a class="date_a text-white" href="#" style="text-decoration:none;">
-                                    <div class="date_div py-3" style="border: 1px solid yellow;">
-                                        <p style="margin:0" class="date_p text-center">{{ theme.time10 }}</p>
-                                        <p style="margin:0" class="date_p2 text-center">예약 가능</p>
+                                <a class="time10date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time10 %}" style="text-decoration:none;">
+                                    <div class="time10date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                        <p style="margin:0" class="time10date_p text-center">{{ theme.time10 }}</p>
+                                        <p style="margin:0" class="time10date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
                             </div>
