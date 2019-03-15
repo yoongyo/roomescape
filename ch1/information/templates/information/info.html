@@ -3,6 +3,26 @@
 {% block content %}
 {% load static %}
 {% for i in info %}
+<script>
+    function MoneySwap(price){
+       var temp_str = String(price);
+       for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++) {
+        retValue = ((i%3) == 0) && i != 0 ? temp_str.charAt((stop - i) -1) + "," + retValue : temp_str.charAt((stop - i) -1) + retValue;
+       }
+       return retValue;
+    }
+    $(function() {
+        {% for i in info %}
+            $("#price_2").html(MoneySwap({{ i.people2 }})+'원 '+'/ '+MoneySwap({{ i.people2|add:2000 }})+'원');
+            $("#price_3").html(MoneySwap({{ i.people3 }})+'원 '+'/ '+MoneySwap({{ i.people3|add:2000 }})+'원');
+            $("#price_4").html(MoneySwap({{ i.people4 }})+'원 '+'/ '+MoneySwap({{ i.people4|add:2000 }})+'원');
+            $("#price_5").html(MoneySwap({{ i.people5 }})+'원 '+'/ '+MoneySwap({{ i.people5|add:2000 }})+'원');
+            $("#price_6").html(MoneySwap({{ i.people6 }})+'원 '+'/ '+MoneySwap({{ i.people6|add:2000 }})+'원');
+            $("#price_m").html(MoneySwap({{ i.middleHigh }})+'원 '+'/ '+MoneySwap({{ i.middleHigh|add:2000 }})+'원');
+            $("#price_e").html(MoneySwap({{ i.elementary }})+'원 '+'/ '+MoneySwap({{ i.elementary|add:2000 }})+'원');
+        {% endfor %}
+    })
+</script>
 <div class="container-fluid py-5" style="background-color:black">
     <h1 class="text-center text-white">{{ i.name }}</h1>
     <h4 class="text-center pb-5" style="color:rgb(171,171,171);">이용안내</h4>
@@ -36,7 +56,9 @@
                             </tr>
                             <tr>
                                 <td>2명</td>
-                                <td>20,000 / 22,000</td>
+                                {% for i in info %}
+                                <td id="price_2"></td>
+                                {% endfor %}
                                 <td rowspan="7" style="text-align:left; padding-left:15px">
                                     <div class="my-5">
                                         {{ i.event|safe }}
@@ -45,27 +67,39 @@
                             </tr>
                             <tr>
                                 <td>3명</td>
-                                <td>18,000 / 20,000</td>
+                                {% for i in info %}
+                                <td id="price_3">{{ i.people3 }}원 / {{ i.people3|add:2000 }}원</td>
+                                {% endfor %}
                             </tr>
                             <tr>
                                 <td>4명</td>
-                                <td>16,000 / 18,000</td>
+                                {% for i in info %}
+                                <td id="price_4">{{ i.people4 }}원 / {{ i.people4|add:2000 }}원</td>
+                                {% endfor %}
                             </tr>
                             <tr>
                                 <td>5명</td>
-                                <td>14,000 / 16,000</td>
+                                {% for i in info %}
+                                <td id="price_5">{{ i.people5 }}원 / {{ i.people5|add:2000 }}원</td>
+                                {% endfor %}
                             </tr>
                             <tr>
                                 <td>6명</td>
-                                <td>13,000 / 15,000</td>
+                                {% for i in info %}
+                                <td id="price_6">{{ i.people6 }}원 / {{ i.people6|add:2000 }}원</td>
+                                {% endfor %}
                             </tr>
                             <tr>
                                 <td>중.고등</td>
-                                <td>13,000 / 15,000</td>
+                                {% for i in info %}
+                                <td id="price_m">{{ i.middleHigh }}원 / {{ i.middleHigh|add:2000 }}원</td>
+                                {% endfor %}
                             </tr>
                             <tr>
                                 <td>초등부</td>
-                                <td>10,000 / 12,000</td>
+                                {% for i in info %}
+                                <td id="price_e">{{ i.elementary }}원 / {{ i.elementary|add:2000 }}</td>
+                                {% endfor %}
                             </tr>
                         </tbody>
                     </table>

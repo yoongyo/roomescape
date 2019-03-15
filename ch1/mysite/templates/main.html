@@ -19,6 +19,31 @@
                     $(".top-nav").removeClass("light-header");
                 }
             });
+            function MoneySwap(price){
+               var temp_str = String(price);
+               for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++) {
+                retValue = ((i%3) == 0) && i != 0 ? temp_str.charAt((stop - i) -1) + "," + retValue : temp_str.charAt((stop - i) -1) + retValue;
+               }
+               return retValue;
+            }
+            $(function() {
+                {% for i in info %}
+                    $("#price_2").html(MoneySwap({{ i.people2 }})+'(인당)');
+                    $("#card_2").html(MoneySwap({{ i.people2|add:2000 }})+'원');
+                    $("#price_3").html(MoneySwap({{ i.people3 }})+'(인당)');
+                    $("#card_3").html(MoneySwap({{ i.people3|add:2000 }})+'원');
+                    $("#price_4").html(MoneySwap({{ i.people4 }})+'(인당)');
+                    $("#card_4").html(MoneySwap({{ i.people4|add:2000 }})+'원');
+                    $("#price_5").html(MoneySwap({{ i.people5 }})+'(인당)');
+                    $("#card_5").html(MoneySwap({{ i.people5|add:2000 }})+'원');
+                    $("#price_6").html(MoneySwap({{ i.people6 }})+'(인당)');
+                    $("#card_6").html(MoneySwap({{ i.people6|add:2000 }})+'원');
+                    $("#price_m").html(MoneySwap({{ i.middleHigh }})+'(인당)');
+                    $("#card_m").html(MoneySwap({{ i.middleHigh|add:2000 }})+'원');
+                    $("#price_e").html(MoneySwap({{ i.elementary }})+'(인당)');
+                    $("#card_e").html(MoneySwap({{ i.elementary|add:2000 }})+'원');
+                {% endfor %}
+            })
         </script>
     </head>
     <body>
@@ -56,9 +81,53 @@
                     </ul>
                   </div>
         </nav>
-        <div class="jumbotron jumbotron-fluid">
-
-        </div>
+        <!--Carousel Wrapper-->
+        <div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+          <!--Indicators-->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-2" data-slide-to="1"></li>
+            <li data-target="#carousel-example-2" data-slide-to="2"></li>
+          </ol>
+          <!--/.Indicators-->
+          <!--Slides-->
+          {% for i in info %}
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <div class="view">
+                <img class="d-block w-100" src="{{ i.image1.url }}" alt="First slide">
+                <div class="mask rgba-black-light"></div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <!--Mask color-->
+              <div class="view">
+                <img class="d-block w-100" src="{{ i.image2.url }}" alt="Second slide">
+                <div class="mask rgba-black-light"></div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <!--Mask color-->
+              <div class="view">
+                <img class="d-block w-100" src="{{ i.image3.url }}" alt="Third slide">
+                <div class="mask rgba-black-light"></div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          <!--/.Slides-->
+          <!--Controls-->
+      <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+      <!--/.Controls-->
+    </div>
+    <!--/.Carousel Wrapper-->
 
         <!-- 주의사항 -->
         <div class="container-fluid" style="background-color:rgb(51,51,51);">
@@ -140,63 +209,71 @@
         <!-- 이용요금-->
         <div class="container-fluid py-5" style="background-color:rgb(51,51,51);">
             <div class="container px-5">
-                <h2 class="text-center text-white pb-4">이용요금</h2>
-                <div>
-                    <table style="width:70%" class="table table-bordered text-white text-center" cellpadding=0 cellspacing=0 border=0 id="price">
-                        <tbody>
-                        <tr style="background-color:white;color:black;">
-                            <td style="border:1px solid white">인원수</td>
-                            <td style="border:1px solid white">현금결제</td>
-                            <td style="border:1px solid white">카드결제</td>
-                            <td style="border:1px solid white">이벤트</td>
-                        </tr>
-                        <tr>
-                            <td class="member">2인</td>
-                            <td>20,000원(인당)</td>
-                            <td>22,000원</td>
-                            <td rowspan="7" class="pt-5">
-                                {{ i.event|safe }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="member">3인</td>
-                            <td>18,000원(인당)</td>
-                            <td>20,000원</td>
-                        </tr>
-                        <tr>
-                        <td class="member">4인</td>
-                            <td>16,000원(인당)</td>
-                            <td>18,000원</td>
-                        </tr>
-                        <tr>
-                            <td class="member">5인</td>
-                            <td>14,000원(인당)</td>
-                            <td>16,000원</td>
-                        </tr>
-                        <tr>
-                            <td class="member">6인</td>
-                            <td>13,000원(인당)</td>
-                            <td>15,000원</td>
-                        </tr>
-                        <tr>
-                            <td class="member">중고생</td>
-                            <td>13,000원(인당)</td>
-                            <td>15,000원</td>
-                        </tr>
-                        <tr>
-                            <td class="member">초등생</td>
-                            <td>10,000원(인당)</td>
-                            <td>12,000원</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-8">
+                        <h2 class="text-center text-white pb-4">이용요금</h2>
+                        <div>
+                            <table style="width:100%" class="table table-bordered text-white text-center" cellpadding=0 cellspacing=0 border=0 id="price">
+                                <tbody>
+                                <tr style="background-color:white;color:black;">
+                                    <td style="border:1px solid white">인원수</td>
+                                    <td style="border:1px solid white">현금결제</td>
+                                    <td style="border:1px solid white">카드결제</td>
+                                    <td style="border:1px solid white">이벤트</td>
+                                </tr>
+                                <tr>
+                                    <td class="member">2인</td>
+                                    <td id="price_2">20,000원(인당)</td>
+                                    <td id="card_2">22,000원</td>
+                                    <td rowspan="7" class="pt-5">
+                                        {{ i.event|safe }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="member">3인</td>
+                                    <td id="price_3">18,000원(인당)</td>
+                                    <td id="card_3">20,000원</td>
+                                </tr>
+                                <tr>
+                                <td class="member">4인</td>
+                                    <td id="price_4">16,000원(인당)</td>
+                                    <td id="card_4">18,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="member">5인</td>
+                                    <td id="price_5">14,000원(인당)</td>
+                                    <td id="card_5">16,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="member">6인</td>
+                                    <td id="price_6">13,000원(인당)</td>
+                                    <td id="card_6">15,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="member">중고생</td>
+                                    <td id="price_m">13,000원(인당)</td>
+                                    <td id="card_m">15,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="member">초등생</td>
+                                    <td id="price_e">10,000원(인당)</td>
+                                    <td id="card_e">12,000원</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
         </div>
 
         <!-- 지도 -->
         <div style="background-color:black">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236.18964685166185!2d127.07343923435204!3d37.20553915734964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b44370ab2f8fb%3A0x5985bca701807464!2z7IiY7ISx7ZSE65287J6Q!5e0!3m2!1sko!2skr!4v1479970556937" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+            {% for i in info %}
+                <iframe src="{{ i.map }}" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+            {% endfor %}
         </div>
 
         <!-- 푸터 -->

@@ -114,6 +114,14 @@
             }
         {% endfor %}
     });
+
+    $(function() {
+        {% for i in booking %}
+        var a = "{{ i.time|escapejs }}";
+        $('#'+ a).html("fuckyou");
+        {% endfor %}
+    });
+
 </script>
 {% for i in booking %}
     {{ i.time }}
@@ -193,7 +201,7 @@
                         <div class="row mt-4">
                             <div class="py-2 px-2" style="width:20%">
                                 <a class="time1date_a text-white" href="{% url 'theme:booking_detail' date i.name i.time1 %}" style="text-decoration:none;">
-                                    <div id="{{ i.name }}_오후 {{ i.time1 }}_div" class="time1date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                    <div id="{{ i.time1|escapejs }}" class="time1date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
                                         <p id="{{ i.time1 }}_p" style="margin:0" class="time1date_p text-center">{{ i.time1 }}</p>
                                         <p style="margin:0" class="time1date_p2 text-center">예약 가능</p>
                                     </div>

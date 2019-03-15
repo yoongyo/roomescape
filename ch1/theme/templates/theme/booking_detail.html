@@ -6,39 +6,50 @@
     function price_change(){
         var form = document.BookingForm;
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "1명"){
-            Price.innerHTML = "금액 : " + MoneySwap(40000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people1 }}, 1) + "원";
+            {% endfor %}
             return;
         }
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "2명"){
-            Price.innerHTML = "금액 : " + MoneySwap(40000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people2 }}, 2) + "원";
+            {% endfor %}
             return;
         }
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "3명"){
-            Price.innerHTML = "금액 : " + MoneySwap(54000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people3 }}, 3) + "원";
+            {% endfor %}
             return;
         }
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "4명"){
-            Price.innerHTML = "금액 : " + MoneySwap(64000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people4 }}, 4) + "원";
+            {% endfor %}
             return;
         }
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "5명"){
-            Price.innerHTML = "금액 : " + MoneySwap(72000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people5 }}, 5) + "원";
+            {% endfor %}
             return;
         }
         if (form.numPeople.options[form.numPeople.selectedIndex].value == "6명"){
-            Price.innerHTML = "금액 : " + MoneySwap(78000) + "원";
+            {% for i in info %}
+            Price.innerHTML = "금액 : " + MoneySwap({{ i.people6 }}, 6) + "원";
+            {% endfor %}
             return;
         }
     }
-    function MoneySwap(mValue)
-      {
-       var temp_str = String(mValue);
-       for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++)
-       {
+    function MoneySwap(mValue, num){
+       var price = num * mValue;
+       var temp_str = String(price);
+       for(var i = 0 , retValue = String() , stop = temp_str.length; i < stop ; i++) {
         retValue = ((i%3) == 0) && i != 0 ? temp_str.charAt((stop - i) -1) + "," + retValue : temp_str.charAt((stop - i) -1) + retValue;
        }
        return retValue;
-      }
+    }
 
 </script>
 
