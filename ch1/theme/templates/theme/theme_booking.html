@@ -210,40 +210,57 @@
     $("#selectBox").val("{% url 'theme:theme_booking' date theme.name %}").prop("selected", true);
   });
 </script>
-<div class="container-fluid py-5" style="background-color:black">
-    <h1 class="text-center text-white">BOOKING</h1>
-    <h4 class="text-center pb-4" style="color:rgb(171,171,171);">테마 예약</h4>
-    <div class="container">
-        <div class="container">
-            <div class="container">
-                <div class="row mx-4 mt-4 px-2 mb-4" style="background-color:rgb(51,51,51);">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-1 my-4 py-1">
-                        <span class="text-white my-4">룸선택 : </span>
-                    </div>
-                    <div class="col-sm-3 my-4">
-                        <select class="form-control" id="selectBox" name="room" onchange="moveToURL(this.value);">
-                            <option value="{% url 'theme:theme_list' date %}">전체 테마</option>
-                            {% for j in themes %}
-                            <option id="{{ j.name }}" value="{% url 'theme:theme_booking' date j.name %}">{{ j.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-1 my-4 py-1" style="padding:0">
-                        <span class="text-white my-4">날짜선택 : </span>
-                    </div>
-                    <div class="col-sm-3 my-4">
-                        <input class="form-control" type="text" autocomplete="off" id="datepicker1">
-                        <script>
-                            $(function(){
-                                $("#datepicker1").prop("value", "{{ date }}");
-                            });
-                        </script>
+<div class="container-fluid py-3" style="background-color:black">
+    <!-- PC 버전 -->
+    <h1 id="fuck" class="d-none d-sm-block text-center text-white mt-4">BOOKING</h1>
+    <h4 class="d-none d-sm-block text-center pb-4" style="color:rgb(171,171,171);">테마 예약</h4>
+    <!-- 모바일 버전 -->
+    <h4 class="d-block d-sm-none text-center text-white">BOOKING</h4>
+    <h5 class="d-block d-sm-none text-center p-2" style="color:rgb(171,171,171);">테마 예약</h5>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 col-xs-12 mx-2">
+            <div class="row p-3" style="background-color:rgb(51,51,51);">
+                <div class="col-6">
+                    <h5 class="m-0 text-white text-center">룸선택</h5>
+                </div>
+                <div class="col-6">
+                    <h5 class="m-0 text-white text-center">날짜선택</h5>
+                </div>
+                <div class="w-100 p-1"></div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 col-xs-12 p-1">
+                            <select class="form-control" id="selectBox" name="room" onchange="moveToURL(this.value);">
+                                <option value="{% url 'theme:theme_list' date %}">전체 테마</option>
+                                {% for j in themes %}
+                                <option id="select" value="{% url 'theme:theme_booking' date j.name %}">{{ j.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2"></div>
                     </div>
                 </div>
-                <div class="row mx-4 my-4 px-4 py-4" style="background-color:rgb(51,51,51);">
-                    <div class="col-8">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 col-xs-12 p-1">
+                            <input class="form-control" type="text" autocomplete="off" name="date" id="datepicker1" onchange="myFunction();">
+                        <script>
+                            $(function(){
+                                $("#datepicker1").prop("value", "{{ date }}")
+                            });
+                        </script>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- PC 버전 -->
+            <div class="d-none d-sm-block">
+                <div class="row my-4 p-3" style="background-color:rgb(51,51,51);">
+                    <div class="col-lg-8 col-xs-12">
                         <h1 class="text-white">{{ theme.name }}</h1>
                         <h5 class="text-white mb-3">인원 : 최대 {{ theme.numPeople }}명</h5>
                         <div class="mb-5">
@@ -299,8 +316,7 @@
                             </div>
                             <div class="py-2 px-2" style="width:20%">
                                 <a class="time3date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time3 %}" style="text-decoration:none;">
-                                    <div class="time3date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
-                                        <p style="margin:0" class="time3date_p text-center">{{ theme.time3 }}</p>
+                                    <div class="time3date_div py-3" style="border: 1px solid yellow;background-color:rgb(85,85,85);"><p style="margin:0" class="time3date_p text-center">{{ theme.time3 }}</p>
                                         <p style="margin:0" class="time3date_p2 text-center">예약 가능</p>
                                     </div>
                                 </a>
@@ -365,8 +381,102 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-lg-4">
                         <img width="100%" src="{{ theme.image.url }}">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 모바일 버전 -->
+            <div class="d-block d-sm-none my-4">
+                <h3 class="text-center" style="color:rgb(230,203,88);">{{ theme.name }}</h3>
+                <h5 class="text-center text-white">{{ theme.genre }}</h5>
+                <p class="text-center">
+                    <img class="text-center" width="95%" height="410px" src="{{ theme.image.url }}">
+                </p>
+                <div class="row">
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time1date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time1 %}" style="text-decoration:none;">
+                            <div class="time1date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time1date_p text-center">{{ theme.time1 }}</p>
+                                <p style="margin:0" class="time1date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time2date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time2 %}" style="text-decoration:none;">
+                            <div class="time2date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time2date_p text-center">{{ theme.time2 }}</p>
+                                <p style="margin:0" class="time2date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time3date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time3 %}" style="text-decoration:none;">
+                            <div class="time3date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);"><p style="margin:0" class="time3date_p text-center">{{ theme.time3 }}</p>
+                                <p style="margin:0" class="time3date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time4date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time4 %}" style="text-decoration:none;">
+                            <div class="time4date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time4date_p text-center">{{ theme.time4 }}</p>
+                                <p style="margin:0" class="time4date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time5date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time5 %}" style="text-decoration:none;">
+                            <div class="time5date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time5date_p text-center">{{ theme.time5 }}</p>
+                                <p style="margin:0" class="time5date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time6date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time6 %}" style="text-decoration:none;">
+                            <div class="time6date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time6date_p text-center">{{ theme.time6 }}</p>
+                                <p style="margin:0" class="time6date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time7date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time7 %}" style="text-decoration:none;">
+                            <div class="time7date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time7date_p text-center">{{ theme.time7 }}</p>
+                                <p style="margin:0" class="time7date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time8date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time8 %}" style="text-decoration:none;">
+                            <div class="time8date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time8date_p text-center">{{ theme.time8 }}</p>
+                                <p style="margin:0" class="time8date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time9date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time9 %}" style="text-decoration:none;">
+                            <div class="time9date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time9date_p text-center">{{ theme.time9 }}</p>
+                                <p style="margin:0" class="time9date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="p-2 col-6" style="width:20%">
+                        <a class="time10date_a text-white" href="{% url 'theme:booking_detail' date theme.name theme.time10 %}" style="text-decoration:none;">
+                            <div class="time10date_div" style="border: 1px solid yellow;background-color:rgb(85,85,85);">
+                                <p style="margin:0" class="time10date_p text-center">{{ theme.time10 }}</p>
+                                <p style="margin:0" class="time10date_p2 text-center">예약 가능</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

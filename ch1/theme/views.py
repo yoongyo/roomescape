@@ -127,7 +127,7 @@ def booking_detail(request, date, theme, time):
             booking.date = date
             booking.time = time
             booking.save()
-            return redirect('theme:booking_complete')
+            return redirect(booking)
     else:
         form = BookingForm()
 
@@ -141,9 +141,11 @@ def booking_detail(request, date, theme, time):
     })
 
 
-def booking_complete(request):
+def booking_complete(request, date, theme, time):
+    info = Information.objects.all()
     now = datetime.datetime.now()
     nowDate = now.strftime('%Y-%m-%d')
     return render(request, 'theme/booking_complete.html', {
-        'today': nowDate
+        'today': nowDate,
+        'info': info,
     })
